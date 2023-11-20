@@ -1,0 +1,1 @@
+import{_ as e,o as s,c as o,a as t}from"./index-1dc64360.js";const c={},a={class:"favorites"},r=t("h1",null,"This is favorites",-1),_=[r];function n(i,d){return s(),o("div",a,_)}const l=e(c,[["render",n]]);export{l as default};

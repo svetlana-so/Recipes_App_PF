@@ -1,27 +1,29 @@
 <script setup lang="ts">
-import { watch } from 'vue'
-import { useRecipeBook } from '../stores/recipies'
-import { storeToRefs } from 'pinia'
+import { watch } from 'vue';
+import { useRecipeBook } from '../stores/recipies';
+import { storeToRefs } from 'pinia';
 
-const RecipeStore = useRecipeBook()
-const { searchquery } = storeToRefs(RecipeStore)
+const RecipeStore = useRecipeBook();
+const { searchquery } = storeToRefs(RecipeStore);
 watch(
   () => RecipeStore.searchquery,
   async (newQuery, oldQuery) => {
     if (newQuery.trim() !== '' && newQuery !== oldQuery) {
       try {
-        await RecipeStore.getData(newQuery)
+        await RecipeStore.getData(newQuery);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
-  }
-)
+  },
+);
 </script>
 
 <template>
   <header>
-    <h3 class="text-4xl md:text-6xl p-8">Elevate Your <br />Dining Experience</h3>
+    <h3 class="text-4xl md:text-6xl p-8">
+      Elevate Your <br />Dining Experience
+    </h3>
   </header>
   <div class="py-8">
     <label for="small-input"></label>

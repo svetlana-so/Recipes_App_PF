@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import FavoritesButton from './FavoritesButton.vue'
-import { useRouter } from 'vue-router'
-import { useRecipeBook } from '../stores/recipies'
+import FavoritesButton from './FavoritesButton.vue';
+import { useRouter } from 'vue-router';
+import { useRecipeBook } from '../stores/recipies';
 
-const RecipeStore = useRecipeBook()
-const router = useRouter()
-const { recipe } = defineProps(['recipe'])
+const RecipeStore = useRecipeBook();
+const router = useRouter();
+const { recipe } = defineProps(['recipe']);
 
 const handleCardClick = (event: any) => {
-  const isButtonClick = event.target.closest('.favorite-button')
+  const isButtonClick = event.target.closest('.favorite-button');
   if (!isButtonClick) {
-    router.push(`/recipe/${recipe.idMeal}`)
+    router.push(`/recipe/${recipe.idMeal}`);
   } else {
     // Handle the favorites action (e.g., add to favorites)
-    RecipeStore.ToggleFavoriteRecipes(recipe.idMeal)
+    RecipeStore.ToggleFavoriteRecipes(recipe.idMeal);
   }
-}
+};
 </script>
 
 <template>

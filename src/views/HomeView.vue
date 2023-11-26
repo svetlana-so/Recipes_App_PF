@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { recipes } from './recipeName';
-import CardComp from '../components/CardComp.vue';
-import HeaderComp from '../components/HeaderComp.vue';
+import { useRecipeBook } from '../stores/recipies'
+import HeaderComponent from '../components/HeaderComponent.vue'
+import SingleRecipeCard from '../components/SingleRecipeCard.vue'
+import { storeToRefs } from 'pinia'
+
+const RecipeStore = useRecipeBook()
+const { recipes, numberOfRecipes } = storeToRefs(RecipeStore)
 </script>
 
 <template>
   <main>
-    <HeaderComp />
-    <div v-if="recipes.length > 0" class="cards">
-      <CardComp v-for="recipe in recipes" :key="recipe.idMeal" :recipe="recipe" />
+    <HeaderComponent />
+    <div>Recipes found: {{ numberOfRecipes }}</div>
+    <div v-if="recipes" class="cards">
+      <SingleRecipeCard v-for="recipe in recipes" :key="recipe.idMeal" :recipe="recipe" />
     </div>
     <div v-else>
       <p>Discover your favorite recipes</p>
@@ -21,7 +26,7 @@ import HeaderComp from '../components/HeaderComp.vue';
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 40px;
   justify-content: center;
   text-align: center;
 }

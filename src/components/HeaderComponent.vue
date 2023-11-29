@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch } from 'vue';
-import { useRecipeBook } from '../stores/recipies';
 import { storeToRefs } from 'pinia';
+import { useRecipeBook } from '../stores/recipies';
 
 const RecipeStore = useRecipeBook();
 const { searchquery } = storeToRefs(RecipeStore);
@@ -15,7 +15,7 @@ watch(
         console.error(error);
       }
     }
-  },
+  }
 );
 </script>
 
@@ -25,14 +25,19 @@ watch(
       Elevate Your <br />Dining Experience
     </h3>
   </header>
-  <div class="py-8">
+  <div class="py-8 relative">
     <label for="small-input"></label>
+    <div
+      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+    >
+      <i class="fa-solid fa-magnifying-glass" style="color: #3e3f42"></i>
+    </div>
     <input
       v-model="searchquery"
       type="text"
       id="small-input"
       placeholder="Search you recipe"
-      class="w-full p-2 text-gray-900 border border-gray-300 rounded-lg sm:text-xs"
+      class="w-full p-2 pl-10 text-gray-900 border border-gray-300 rounded-lg sm:text-xs"
     />
   </div>
 </template>
@@ -42,8 +47,8 @@ header {
   height: 40vh;
   background: linear-gradient(
       to bottom right,
-      rgba(255, 255, 255, 0.566),
-      rgba(255, 255, 255, 0.046)
+      rgb(255 255 255 / 36%),
+      rgb(255 255 255 / 16%)
     ),
     url('../images/pics.jpg');
   background-size: cover;

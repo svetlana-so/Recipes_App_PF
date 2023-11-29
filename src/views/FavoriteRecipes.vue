@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import { onBeforeMount } from 'vue';
 import { storeToRefs } from 'pinia';
 import PrevButton from '../components/PrevButton.vue';
 import { useRecipeBook } from '../stores/recipies';
 import SingleRecipeCard from '@/components/SingleRecipeCard.vue';
+
 const RecipeStore = useRecipeBook();
 const { favoritesRecipes } = storeToRefs(RecipeStore);
+
+onBeforeMount(() => {
+  RecipeStore.loadFavoritesFromLocalStorage();
+});
 </script>
 
 <template>

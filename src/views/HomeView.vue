@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { useRecipeBook } from '../stores/recipies';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import SingleRecipeCard from '../components/SingleRecipeCard.vue';
-import { storeToRefs } from 'pinia';
 
 const RecipeStore = useRecipeBook();
 const { recipes, numberOfRecipes } = storeToRefs(RecipeStore);
@@ -12,7 +12,7 @@ const { recipes, numberOfRecipes } = storeToRefs(RecipeStore);
   <main>
     <HeaderComponent />
     <div>Recipes found: {{ numberOfRecipes }}</div>
-    <div v-if="recipes" class="flex flex-wrap gap-12 py-8">
+    <div v-if="recipes" class="flex flex-wrap justify-evenly gap-2 py-8">
       <SingleRecipeCard
         v-for="recipe in recipes"
         :key="recipe.idMeal"

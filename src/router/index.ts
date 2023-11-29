@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'RecipePage',
       component: () => import('../views/RecipePageView.vue'),
     },
+    {
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
+      component: () => import('../views/ErrorPage.vue'),
+    },
   ],
 });
 

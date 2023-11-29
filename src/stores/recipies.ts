@@ -1,6 +1,6 @@
 // useRecipeBook.ts
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 type Recipe = {
   strMeal: string;
@@ -10,7 +10,13 @@ type Recipe = {
   strIngredient: string;
   strMeasure: string;
   strInstructions: string;
+  strArea: string;
+  strCategory: string;
+  strYoutube: string;
+  strSource: string;
 };
+
+const FAVORITES_KEY = 'favoritesRecipes';
 
 export const useRecipeBook = defineStore('RecipeBook', () => {
   const recipes = ref<Recipe[]>([]);
@@ -19,7 +25,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
   const isLoading = ref<boolean>(false);
   const singleRecipe = ref<Recipe | null>(null);
   const numberOfRecipes = computed(() =>
-    recipes.value ? recipes.value.length : 0,
+    recipes.value ? recipes.value.length : 0
   );
 
   const filteredIngredients = computed(() => {
@@ -31,16 +37,39 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
         measure: (singleRecipe.value! as any)[`strMeasure${i}`]?.trim() || '',
       }))
       .filter(
-        ingredient =>
-          ingredient.name.trim() !== '' || ingredient.measure.trim() !== '',
+        (ingredient) =>
+          ingredient.name.trim() !== '' || ingredient.measure.trim() !== ''
       );
   });
 
+  const isRecipeValid = computed(() => {
+    return (idMeal: number) => {
+      return recipes.value.some((recipe) => recipe.idMeal === idMeal);
+    };
+  });
+
+  watch(
+    () => favoritesRecipes.value,
+    () => {
+      localStorage.setItem(
+        FAVORITES_KEY,
+        JSON.stringify(favoritesRecipes.value)
+      );
+    },
+    { deep: true }
+  );
+
+  function loadFavoritesFromLocalStorage(): void {
+    const favoritesFromStorage = localStorage.getItem(FAVORITES_KEY);
+    if (favoritesFromStorage) {
+      favoritesRecipes.value = JSON.parse(favoritesFromStorage);
+    }
+  }
   async function getData(searchquery: string): Promise<void> {
     try {
       isLoading.value = true;
       const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchquery}`,
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchquery}`
       );
       const data = await response.json();
       recipes.value = data.meals || [];
@@ -54,7 +83,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     try {
       isLoading.value = true;
       const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
       );
       const data = await response.json();
       singleRecipe.value = data.meals ? data.meals[0] : null;
@@ -64,24 +93,23 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
       isLoading.value = false;
     }
   }
-  function ToggleFavoriteRecipes(id: number): void {
-    const recipeToAdd = recipes.value?.find(recipe => recipe.idMeal === id);
+  function toggleFavoriteRecipes(id: number): void {
+    const recipeToAdd = recipes.value?.find((recipe) => recipe.idMeal === id);
 
     if (recipeToAdd) {
       const isRecipeInFavorites = favoritesRecipes.value.some(
-        recipe => recipe.idMeal === id,
+        (recipe) => recipe.idMeal === id
       );
-
       if (!isRecipeInFavorites) {
         favoritesRecipes.value.push(recipeToAdd);
       } else {
-        // Recipe is already in favorites, remove it
         favoritesRecipes.value = favoritesRecipes.value.filter(
-          recipe => recipe.idMeal !== id,
+          (recipe) => recipe.idMeal !== id
         );
       }
     }
   }
+
   return {
     recipes,
     searchquery,
@@ -90,8 +118,10 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     singleRecipe,
     numberOfRecipes,
     filteredIngredients,
-    ToggleFavoriteRecipes,
+    isRecipeValid,
+    toggleFavoriteRecipes,
     getSingleRecipe,
     getData,
+    loadFavoritesFromLocalStorage,
   };
 });

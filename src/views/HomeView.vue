@@ -11,7 +11,7 @@ const { recipes, numberOfRecipes } = storeToRefs(RecipeStore);
 <template>
   <main>
     <HeaderComponent />
-    <div>Recipes found: {{ numberOfRecipes }}</div>
+    <div class="flex justify-end">Recipes found: {{ numberOfRecipes }}</div>
     <div v-if="recipes" class="flex flex-wrap justify-evenly gap-2 py-8">
       <SingleRecipeCard
         v-for="recipe in recipes"

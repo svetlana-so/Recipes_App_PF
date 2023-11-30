@@ -21,7 +21,7 @@ function isFavorite(recipe: any) {
     <i
       v-if="isFavorite(recipe)"
       class="fa-solid fa-bookmark"
-      style="color: #6a1515"
+      style="color: rgb(223 165 4)"
     ></i>
     <i v-else class="fa-regular fa-bookmark" style="color: #fffefe"></i>
   </button>
@@ -29,7 +29,6 @@ function isFavorite(recipe: any) {
 
 <style scoped>
 .favorite-button {
-  opacity: 0.9;
   cursor: pointer;
   padding: 1rem;
   font-size: 2.5rem;

@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { formatInstructions } from '../stores/formatInstructions';
 import PrevButton from '../components/PrevButton.vue';
-import FavoritesButton from '../components/FavoritesButton.vue';
+import CommentsComponent from '../components/CommentsComponent.vue';
 import { useRecipeBook } from '../stores/recipies';
 
 const RecipeStore = useRecipeBook();
@@ -31,10 +31,10 @@ const openSource = () => {
 <template>
   <PrevButton />
   <div v-if="singleRecipe" class="recipe-container">
-    <h2 class="p-4 text-2xl text-center font-semibold">
+    <h2 class="p-4 text-4xl text-center font-semibold">
       {{ singleRecipe.strMeal.toUpperCase() }}
     </h2>
-    <div class="sources flex flex-row justify-end">
+    <div class="sources flex flex-row justify-center sm:justify-end">
       <button
         @click="openYoutube"
         class="focus:outline-none text-white bg-red-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
@@ -120,4 +120,11 @@ const openSource = () => {
     <p>Loading</p>
     <span>This may take a few seconds, please don't close this page.</span>
   </div>
+  <CommentsComponent />
 </template>
+
+<style scoped>
+h2 {
+  font-family: 'Marker Felt', fantasy;
+}
+</style>

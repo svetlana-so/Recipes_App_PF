@@ -120,7 +120,7 @@ const openSource = () => {
     <p>Loading</p>
     <span>This may take a few seconds, please don't close this page.</span>
   </div>
-  <CommentsComponent />
+  <CommentsComponent :recipeId="recipeId" />
 </template>
 
 <style scoped>

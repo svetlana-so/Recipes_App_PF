@@ -1,6 +1,19 @@
+<script setup lang="ts">
+import { watchEffect } from 'vue';
+import { useRecipeBook } from '../stores/recipies';
+import { storeToRefs } from 'pinia';
+import { RouterLink } from 'vue-router';
+const RecipeStore = useRecipeBook();
+const { isLoggedIn } = storeToRefs(RecipeStore);
+
+watchEffect(() => {
+  isLoggedIn.value = localStorage.getItem('user_name') !== null;
+});
+</script>
+
 <template>
   <div class="flex flex-row justify-between py-8">
-    <div class="flex flex-row p-6 gap-4 text-m md:text-2xl">
+    <div class="flex flex-row items-center p-6 gap-4 text-m md:text-2xl">
       <RouterLink class="hover:underline" active-class="active" to="/"
         >Home</RouterLink
       >
@@ -9,16 +22,29 @@
       >
     </div>
     <div class="logo"></div>
-    <div class="flex flex-row p-6 gap-4 text-m md:text-2xl">
+    <div class="flex flex-row items-center p-6 gap-4 text-m md:text-2xl">
       <p>About</p>
-      <p>Contact</p>
+      <RouterLink
+        v-if="!isLoggedIn"
+        class="hover:underline"
+        active-class="active"
+        to="/login"
+        ><button
+          class="h-10 px-5 m-2 text-sm text-white transition-colors duration-150 bg-yellow-600 rounded-lg focus:shadow-outline hover:bg-yellow-700"
+        >
+          Log In
+        </button></RouterLink
+      >
+      <button
+        @click="RecipeStore.logout"
+        v-if="isLoggedIn"
+        class="h-10 px-5 m-2 text-sm text-white transition-colors duration-150 bg-red-600 rounded-lg focus:shadow-outline hover:bg-red-700"
+      >
+        Log Out
+      </button>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-</script>
 
 <style scoped>
 .active {

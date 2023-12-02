@@ -16,14 +16,28 @@ type Recipe = {
   strSource: string;
 };
 
+type Comment = {
+  recipeId: number;
+  recipeComment: string;
+};
+
 const FAVORITES_KEY = 'favoritesRecipes';
+const USER_NAME_KEY = 'user_name';
+const COMMENTS = 'comments';
 
 export const useRecipeBook = defineStore('RecipeBook', () => {
+  const user_name = ref<string>(localStorage.getItem(USER_NAME_KEY) || '');
   const recipes = ref<Recipe[]>([]);
   const searchquery = ref<string>('');
   const favoritesRecipes = ref<Recipe[]>([]);
   const isLoading = ref<boolean>(false);
   const singleRecipe = ref<Recipe | null>(null);
+  const isLoggedIn = ref<boolean>(false);
+  const comments = ref<Comment[]>(
+    JSON.parse(localStorage.getItem(COMMENTS) ?? '[]')
+  );
+  const singleComment = ref<string>('');
+
   const numberOfRecipes = computed(() =>
     recipes.value ? recipes.value.length : 0
   );
@@ -47,6 +61,21 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
       return recipes.value.some((recipe) => recipe.idMeal === idMeal);
     };
   });
+
+  const handleSubmit = async () => {
+    if (!user_name.value.trim()) {
+      return;
+    }
+    isLoggedIn.value = true;
+    localStorage.setItem(USER_NAME_KEY, user_name.value);
+  };
+  const logout = async () => {
+    isLoggedIn.value = false;
+    localStorage.removeItem(USER_NAME_KEY);
+    localStorage.removeItem(COMMENTS);
+    localStorage.removeItem(FAVORITES_KEY);
+    user_name.value = '';
+  };
 
   watch(
     () => favoritesRecipes.value,
@@ -119,6 +148,12 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     numberOfRecipes,
     filteredIngredients,
     isRecipeValid,
+    user_name,
+    isLoggedIn,
+    singleComment,
+    comments,
+    logout,
+    handleSubmit,
     toggleFavoriteRecipes,
     getSingleRecipe,
     getData,

@@ -7,7 +7,7 @@ const { user_name, isLoggedIn } = storeToRefs(RecipeStore);
 </script>
 
 <template>
-  <section v-if="!isLoggedIn" class="bg-gray-50">
+  <section v-if="!isLoggedIn" class="image">
     <div
       class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
     >
@@ -48,7 +48,22 @@ const { user_name, isLoggedIn } = storeToRefs(RecipeStore);
       </div>
     </div>
   </section>
-  <div v-if="isLoggedIn">
-    <p>Welcome to your account, {{ user_name }}!</p>
+  <div class="flex justify-center">
+    <div v-if="isLoggedIn" class="image h-96 w-96 p-6 text-center text-lg">
+      <p>
+        Welcome to your account, <span class="font-bold">{{ user_name }}!</span>
+      </p>
+    </div>
   </div>
 </template>
+<style scoped>
+.image {
+  background-image: url('../images/signpicture.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+</style>

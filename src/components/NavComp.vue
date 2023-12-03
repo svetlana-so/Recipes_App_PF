@@ -23,7 +23,9 @@ watchEffect(() => {
     </div>
     <div class="logo"></div>
     <div class="flex flex-row items-center p-6 gap-4 text-m md:text-2xl">
-      <p>About</p>
+      <RouterLink class="hover:underline" active-class="active" to="/about"
+        >About</RouterLink
+      >
       <RouterLink
         v-if="!isLoggedIn"
         class="hover:underline"

@@ -4,7 +4,8 @@ import { storeToRefs } from 'pinia';
 import { useRecipeBook } from '../stores/recipies';
 
 const RecipeStore = useRecipeBook();
-const { searchquery } = storeToRefs(RecipeStore);
+const { searchquery, user_name } = storeToRefs(RecipeStore);
+
 watch(
   () => RecipeStore.searchquery,
   async (newQuery, oldQuery) => {
@@ -21,6 +22,9 @@ watch(
 
 <template>
   <header>
+    <h1 class="text-yellow-700 text-xl font-semibold md:text-4xl px-8 py-2">
+      Hello, {{ user_name }}
+    </h1>
     <h3 class="text-4xl md:text-6xl p-8">
       Elevate Your <br />Dining Experience
     </h3>
@@ -47,8 +51,8 @@ header {
   height: 40vh;
   background: linear-gradient(
       to bottom right,
-      rgb(255 255 255 / 36%),
-      rgb(255 255 255 / 16%)
+      rgb(255 255 255 / 30%),
+      rgb(255 255 255 / 19%)
     ),
     url('../images/pics.jpg');
   background-size: cover;

@@ -49,21 +49,19 @@ const { user_name, isLoggedIn } = storeToRefs(RecipeStore);
     </div>
   </section>
   <div class="flex justify-center">
-    <div v-if="isLoggedIn" class="image h-96 w-96 p-6 text-center text-lg">
+    <div
+      v-if="isLoggedIn"
+      class="flex flex-col gap-6 justify-center items-center my-10"
+    >
+      <img
+        class="w-32 h-32 object-cover object-bottom rounded-full"
+        src="../images/avatar.jpg"
+        alt=""
+      />
+      <h1>My Profile:</h1>
       <p>
-        Welcome to your account, <span class="font-bold">{{ user_name }}!</span>
+        Name: <span class="font-bold">{{ user_name }}</span>
       </p>
     </div>
   </div>
 </template>
-<style scoped>
-.image {
-  background-image: url('../images/signpicture.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-</style>

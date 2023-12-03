@@ -77,6 +77,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     user_name.value = '';
   };
 
+  //watch the favoritesRecipes array and update the localStorage
   watch(
     () => favoritesRecipes.value,
     () => {
@@ -94,6 +95,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
       favoritesRecipes.value = JSON.parse(favoritesFromStorage);
     }
   }
+
   async function getData(searchquery: string): Promise<void> {
     try {
       isLoading.value = true;
@@ -122,6 +124,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
       isLoading.value = false;
     }
   }
+
   function toggleFavoriteRecipes(id: number): void {
     const recipeToAdd = recipes.value?.find((recipe) => recipe.idMeal === id);
 

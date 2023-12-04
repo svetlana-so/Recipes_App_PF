@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to Mormors Recipes – your go-to application for discovering delicious recipes! This readme file provides an overview of the application's features and how to make the most out of your culinary journey.
+Welcome to Mormors Kitchen – your go-to application for discovering delicious recipes! This readme file provides an overview of the application's features and how to make the most out of your culinary journey.
 
 ## Getting Started
 

@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useRecipeBook } from '../stores/recipies';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const RecipeStore = useRecipeBook();
 const { user_name, isLoggedIn } = storeToRefs(RecipeStore);
+
+const navigateToHomePage = () => {
+  router.push(`/`);
+};
 </script>
 
 <template>
@@ -62,6 +68,13 @@ const { user_name, isLoggedIn } = storeToRefs(RecipeStore);
       <p>
         Name: <span class="font-bold">{{ user_name }}</span>
       </p>
+      <button
+        @click="navigateToHomePage"
+        type="button"
+        class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
+      >
+        Explore the recipes
+      </button>
     </div>
   </div>
 </template>

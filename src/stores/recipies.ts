@@ -125,20 +125,21 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     }
   }
 
+  //comment for myself: this will work only when the state of the recipes is the same
   function toggleFavoriteRecipes(id: number): void {
-    const recipeToAdd = recipes.value?.find((recipe) => recipe.idMeal === id);
+    const existingRecipeIndex = favoritesRecipes.value.findIndex(
+      (recipe) => recipe.idMeal === id
+    );
 
-    if (recipeToAdd) {
-      const isRecipeInFavorites = favoritesRecipes.value.some(
-        (recipe) => recipe.idMeal === id
-      );
-      if (!isRecipeInFavorites) {
+    if (existingRecipeIndex === -1) {
+      //if there is no recipe in favorites
+      const recipeToAdd = recipes.value?.find((recipe) => recipe.idMeal === id);
+
+      if (recipeToAdd) {
         favoritesRecipes.value.push(recipeToAdd);
-      } else {
-        favoritesRecipes.value = favoritesRecipes.value.filter(
-          (recipe) => recipe.idMeal !== id
-        );
       }
+    } else {
+      favoritesRecipes.value.splice(existingRecipeIndex, 1);
     }
   }
 

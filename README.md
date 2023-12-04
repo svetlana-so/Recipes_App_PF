@@ -1,25 +1,49 @@
-# vue-project
+# Recipe App
 
-This template should help get you started developing with Vue 3 in Vite.
+## Introduction
 
-## Recommended IDE Setup
+Welcome to Mormors Recipes – your go-to application for discovering delicious recipes! This readme file provides an overview of the application's features and how to make the most out of your culinary journey.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Getting Started
 
-## Type Support for `.vue` Imports in TS
+To use Recipe Explorer, start by creating an account. Logging in unlocks the full potential of the app, enabling you to interact with other users and personalize your experience.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Features
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### 1. Browse Recipes
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Explore a vast collection of recipes available through our API. Get inspired by a variety of dishes and discover new favorites.
 
-## Customize configuration
+### 2. User Interaction
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Enhance your experience by engaging with other users. Leave comments on recipes to share your thoughts and ideas. This feature sets the stage for future developments centered around community interaction.
+
+### 3. Search Functionality
+
+Effortlessly find recipes that match your preferences using the search query feature.
+
+### 4. Favorite Recipes
+
+Save your most-loved recipes to easily access them later. The local storage feature ensures that your favorite recipes are preserved even when you close the application.
+
+### 5. Data Privacy
+
+We prioritize your privacy. When you log out, all data stored locally on your device is deleted, offering a secure and worry-free environment.
+
+## How to Use
+
+1. **Log In or Sign Up:** Create an account or log in to unlock all features.
+2. **Explore Recipes:** Browse through a diverse range of recipes.
+3. **Interact with Others:** Leave comments and connect with fellow food enthusiasts.
+4. **Search for Recipes:** Use the search functionality to find specific recipes.
+5. **Save Favorites:** Keep track of your favorite recipes for quick access.
+6. **Data Security:** Rest assured, your data is deleted locally when you log out.
+
+## Future Developments
+
+We are committed to evolving Recipe Explorer based on user feedback and needs. Stay tuned for exciting updates that will further enhance your culinary journey.
+
+Happy cooking! 🍳👩‍🍳👨‍🍳
 
 ## Project Setup
 

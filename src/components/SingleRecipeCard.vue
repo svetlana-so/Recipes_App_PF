@@ -8,7 +8,6 @@ const RecipeStore = useRecipeBook();
 const router = useRouter();
 const { recipe } = defineProps(['recipe']);
 
-//fix this
 const handleCardClick = (event: any) => {
   const isButtonClick = event.target.closest('.favorite-button');
   if (!isButtonClick && RecipeStore.isRecipeValid(recipe.idMeal)) {

@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed, watch } from 'vue';
 
-type Recipe = {
+export type Recipe = {
   strMeal: string;
   idMeal: number;
   urlMeal: string;

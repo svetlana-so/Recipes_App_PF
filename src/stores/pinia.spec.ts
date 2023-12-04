@@ -1,53 +1,67 @@
 import { setActivePinia, createPinia } from 'pinia';
 import { useRecipeBook } from '@/stores/recipies';
 import { describe, expect, it, beforeEach } from 'vitest';
+import type { Recipe } from '@/stores/recipies';
 
 describe('RecipeBook', () => {
   beforeEach(() => {
-    // creates a fresh pinia and makes it active
-    // so it's automatically picked up by any useStore() call
-    // without having to pass it to it: `useStore(pinia)`
     setActivePinia(createPinia());
   });
+
+  const createSampleRecipe = (id: number): Recipe => {
+    return {
+      strMeal: `Sample Recipe ${id}`,
+      idMeal: id,
+      urlMeal: `https//.../${id}`,
+      strMealThumb: 'info',
+      strIngredient: 'flour',
+      strMeasure: '30 g',
+      strInstructions: 'Do like this',
+      strArea: 'British',
+      strCategory: 'Starter',
+      strYoutube: `www.test.com/${id}`,
+      strSource: `www.source.com/${id}`,
+    };
+  };
 
   it('should load information from api', async () => {
     const RecipeStore = useRecipeBook();
     expect(RecipeStore.recipes).toEqual([]);
-    if (typeof RecipeStore.isLoading === 'boolean') {
-      expect(RecipeStore.isLoading).toBe(false);
-    } else {
-      expect(RecipeStore.isLoading).toBe(true);
-    }
+    expect(RecipeStore.isLoading).toBe(false);
   });
 
   it('should remove a recipe from favorites if it is already in favorites', () => {
     const RecipeStore = useRecipeBook();
-    const sampleRecipe = { idMeal: 1, strMeal: 'Sample Recipe' };
+    const sampleRecipe = createSampleRecipe(1);
 
-    // Add the recipe to favorites initially
     RecipeStore.recipes = [sampleRecipe];
     RecipeStore.favoritesRecipes = [sampleRecipe];
-
-    // Ensure the recipe is in favorites
     expect(RecipeStore.favoritesRecipes.length).toBe(1);
-
-    // Remove the recipe from favorites
     RecipeStore.toggleFavoriteRecipes(sampleRecipe.idMeal);
-
-    // Assert that the recipe is no longer in favorites
     expect(RecipeStore.favoritesRecipes.length).toBe(0);
   });
-  /* 
-  it('should not modify favorites if recipeToAdd is undefined', () => {
+
+  it('should return true for a valid recipe ID', () => {
     const RecipeStore = useRecipeBook();
+    const validRecipeId = 123;
 
-    // Ensure favoritesRecipes is empty initially
-    expect(RecipeStore.favoritesRecipes).toEqual([]);
+    RecipeStore.recipes = [createSampleRecipe(123), createSampleRecipe(2)];
 
-    // Call toggleFavoriteRecipes with an undefined recipeToAdd
-    RecipeStore.toggleFavoriteRecipes(1);
+    const isRecipeValid = RecipeStore.isRecipeValid;
+    const result = isRecipeValid(validRecipeId);
 
-    // Assert that favoritesRecipes is still empty
-    expect(RecipeStore.favoritesRecipes).toEqual([]);
-  }); */
+    expect(result).toBe(true);
+  });
+
+  it('should return false for an invalid recipe ID', () => {
+    const RecipeStore = useRecipeBook();
+    const invalidRecipeId = 789;
+
+    RecipeStore.recipes = [createSampleRecipe(123), createSampleRecipe(2)];
+
+    const isRecipeValid = RecipeStore.isRecipeValid;
+    const result = isRecipeValid(invalidRecipeId);
+
+    expect(result).toBe(false);
+  });
 });

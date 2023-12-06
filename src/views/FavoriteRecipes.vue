@@ -20,6 +20,7 @@ onBeforeMount(() => {
     class="flex flex-wrap justify-center gap-8"
   >
     <SingleRecipeCard
+      data-testid="favorite"
       v-for="recipe in favoritesRecipes"
       :key="recipe.idMeal"
       :recipe="recipe"

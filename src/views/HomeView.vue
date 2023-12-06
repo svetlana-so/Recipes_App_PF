@@ -50,7 +50,9 @@ const hidePopup = () => {
       />
     </div>
     <div v-else class="my-10 flex justify-center">
-      <p class="text-slate-400">Discover your favorite recipes</p>
+      <p data-testid="welcome-page" class="text-slate-400">
+        Discover your favorite recipes
+      </p>
       <i
         class="m-1 mx-6 fa-solid fa-magnifying-glass fa-fade"
         style="color: #52565b"
@@ -70,5 +72,6 @@ const hidePopup = () => {
   background-image: url('../images/welmess.jpg');
   background-size: cover;
   background-position: center;
+  z-index: 99;
 }
 </style>

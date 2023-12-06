@@ -66,7 +66,10 @@ const navigateToHomePage = () => {
       />
       <h1>My Profile:</h1>
       <p>
-        Name: <span class="font-bold">{{ user_name }}</span>
+        Name:
+        <span data-testid="user-name-for-test" class="font-bold">{{
+          user_name
+        }}</span>
       </p>
       <button
         @click="navigateToHomePage"

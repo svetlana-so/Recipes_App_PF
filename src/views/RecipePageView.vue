@@ -31,7 +31,10 @@ const openSource = () => {
 <template>
   <PrevButton />
   <div v-if="singleRecipe" class="recipe-container">
-    <h2 class="p-4 text-4xl text-center font-semibold">
+    <h2
+      data-testid="recipe-name"
+      class="p-4 text-4xl text-center font-semibold"
+    >
       {{ singleRecipe.strMeal.toUpperCase() }}
     </h2>
     <div class="sources flex flex-row justify-center sm:justify-end">

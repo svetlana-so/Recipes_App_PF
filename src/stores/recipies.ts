@@ -75,6 +75,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     localStorage.removeItem(COMMENTS);
     localStorage.removeItem(FAVORITES_KEY);
     user_name.value = '';
+    searchquery.value = '';
   };
 
   //watch the favoritesRecipes array and update the localStorage

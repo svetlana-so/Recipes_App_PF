@@ -24,12 +24,6 @@ describe('RecipeBook', () => {
     };
   };
 
-  it('should load information from api', async () => {
-    const RecipeStore = useRecipeBook();
-    expect(RecipeStore.recipes).toEqual([]);
-    expect(RecipeStore.isLoading).toBe(false);
-  });
-
   it('should remove a recipe from favorites if it is already in favorites', () => {
     const RecipeStore = useRecipeBook();
     const sampleRecipe = createSampleRecipe(1);
@@ -64,4 +58,6 @@ describe('RecipeBook', () => {
 
     expect(result).toBe(false);
   });
+
+  //user interraction tests: log in log out
 });

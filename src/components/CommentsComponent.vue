@@ -87,7 +87,9 @@ const filteredComments = computed(() => {
               >
                 {{ user_name }}
               </p>
-              <p class="text-gray-700">{{ comment.recipeComment }}</p>
+              <p data-testid="comment" class="text-gray-700">
+                {{ comment.recipeComment }}
+              </p>
             </ul>
           </div>
         </footer>

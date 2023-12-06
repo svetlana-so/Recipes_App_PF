@@ -23,7 +23,7 @@ const handleCardClick = (event: any) => {
     <div class="polaroid">
       <img :src="recipe.strMealThumb" :alt="recipe.strMeal" />
       <div class="favorite-button">
-        <FavoritesButton :recipe="recipe" />
+        <FavoritesButton data-testid="toggle-button" :recipe="recipe" />
       </div>
       <div class="caption text-center text-sm overflow-clip md:text-2xl">
         {{ recipe.strMeal }}

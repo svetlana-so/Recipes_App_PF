@@ -2,7 +2,6 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRecipeBook } from '../stores/recipies';
-import { devices } from '@playwright/test';
 const RecipeStore = useRecipeBook();
 
 const { user_name, isLoggedIn, comments, singleComment } =

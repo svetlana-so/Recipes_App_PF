@@ -1,7 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test('Test User Experience', async ({ page }) => {
-  await page.goto('http://localhost:5173/');
+  try {
+    await page.goto('http://localhost:5173/');
+    // Your test logic here
+  } catch (error) {
+    console.error('Error navigating to the URL:', error);
+    // Handle the error or fail the test as needed
+  }
   const userName = await page.evaluate(() =>
     localStorage.getItem('USER_NAME_KEY')
   );

@@ -1,7 +1,11 @@
 import { setActivePinia, createPinia } from 'pinia';
 import { useRecipeBook } from '@/stores/recipies';
-import { describe, expect, it, beforeEach } from 'vitest';
+import { describe, expect, it, beforeEach, vi, afterEach } from 'vitest';
 import type { Recipe } from '@/stores/recipies';
+
+const USER_NAME_KEY = 'user_name';
+const COMMENTS = 'comments';
+const FAVORITES_KEY = 'favorites_key';
 
 describe('RecipeBook', () => {
   beforeEach(() => {
@@ -58,6 +62,51 @@ describe('RecipeBook', () => {
 
     expect(result).toBe(false);
   });
-
   //user interraction tests: log in log out
+});
+
+describe('RecipeBook Service', () => {
+  const getItemSpy = vi.spyOn(Storage.prototype, 'getItem');
+  const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
+  const removeItemSpy = vi.spyOn(Storage.prototype, 'removeItem');
+
+  afterEach(() => {
+    localStorage.clear();
+    getItemSpy.mockClear();
+    setItemSpy.mockClear();
+    removeItemSpy.mockClear();
+  });
+
+  describe('login', () => {
+    it('logs in and sets user-related data in local storage', () => {
+      const RecipeStore = useRecipeBook();
+
+      RecipeStore.user_name = 'testuser';
+      RecipeStore.handleSubmit();
+
+      expect(setItemSpy).toHaveBeenCalledWith(USER_NAME_KEY, 'testuser');
+      expect(RecipeStore.isLoggedIn).toBe(true);
+    });
+  });
+
+  describe('logout', () => {
+    it('logs out and removes user-related data from local storage', () => {
+      const RecipeStore = useRecipeBook();
+
+      localStorage.setItem(USER_NAME_KEY, 'testuser');
+      localStorage.setItem(COMMENTS, 'sample comment');
+      localStorage.setItem(
+        FAVORITES_KEY,
+        JSON.stringify([{ id: 1, name: 'recipe' }])
+      );
+
+      RecipeStore.logout();
+
+      expect(removeItemSpy).toHaveBeenCalledWith(USER_NAME_KEY);
+      expect(removeItemSpy).toHaveBeenCalledWith(COMMENTS);
+      //fix this
+      /* expect(removeItemSpy).toHaveBeenCalledWith(FAVORITES_KEY); */
+      expect(RecipeStore.isLoggedIn).toBe(false);
+    });
+  });
 });

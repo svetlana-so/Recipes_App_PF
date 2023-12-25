@@ -62,7 +62,6 @@ describe('RecipeBook', () => {
 
     expect(result).toBe(false);
   });
-  //user interraction tests: log in log out
 });
 
 describe('RecipeBook Service', () => {

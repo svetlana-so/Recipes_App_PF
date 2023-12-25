@@ -26,8 +26,9 @@ const hidePopup = () => {
     <HeaderComponent />
     <div v-if="showPopup && !isLoggedIn">
       <div class="popup flex flex-col justify-center items-start">
-        <h1 class="text-6xl font-semibold m-10">
-          It's <br />Cooking <br />Time!
+        <h1 class="text-6xl font-semibold m-10 text-white">WELCOME</h1>
+        <h1 class="text-4xl font-semibold m-10">
+          Discover the perfect <br />recipes for any occasion!
         </h1>
         <button
           @click="toLoginPage"

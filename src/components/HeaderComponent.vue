@@ -22,8 +22,11 @@ watch(
 
 <template>
   <header>
-    <h1 class="text-yellow-700 text-xl font-semibold md:text-4xl px-8 py-2">
-      Hello, {{ user_name }}
+    <h1
+      class="text-black text-xl font-semibold md:text-4xl px-8 py-2 text-right"
+    >
+      Hello,<br />
+      {{ user_name }}
     </h1>
     <h3 class="text-4xl md:text-6xl p-8">
       Elevate Your <br />Dining Experience

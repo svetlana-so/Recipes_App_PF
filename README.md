@@ -69,5 +69,5 @@ npm run build
 npm run test:unit
 ```
 
-Or simly visit https://svetlana-so.github.io/Recipes_App_PF/
+Or simply visit https://svetlana-so.github.io/Recipes_App_PF/
 

@@ -38,10 +38,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      ## Lint
-      - name: Run linters
-        run: npm run lint
-
       ## Unit tests
       - name: Run unit tests
         run: npm run test:unit

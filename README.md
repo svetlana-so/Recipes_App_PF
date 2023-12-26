@@ -71,8 +71,3 @@ npm run test:unit
 
 Or simly visit https://svetlana-so.github.io/Recipes_App_PF/
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```

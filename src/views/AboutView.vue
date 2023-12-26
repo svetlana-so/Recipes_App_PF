@@ -1,7 +1,7 @@
 <template>
   <h1 class="text-lg font-bold text-center">About me</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
-    <div class="h-40">
+    <div class="mx-auto">
       <p class="m-6">
         Welcome to the heart and soul of my recipe haven! <br />My culinary
         journey began with a fervent love for family traditions and the rich
@@ -15,7 +15,7 @@
       <img
         class="h-80 rounded-lg object-cover"
         src="../images/chef.jpg"
-        alt=""
+        alt="me"
       />
     </div>
     <div class="m-6">

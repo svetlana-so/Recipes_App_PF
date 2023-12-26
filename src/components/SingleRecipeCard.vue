@@ -36,8 +36,8 @@ const handleCardClick = (event: any) => {
 .favorite-button {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 10%;
-  left: 88%;
+  top: 8%;
+  left: 90%;
   filter: none;
 }
 

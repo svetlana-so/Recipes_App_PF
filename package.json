@@ -23,6 +23,7 @@
     "@vitejs/plugin-vue": "^4.4.0",
     "@playwright/test": "^1.40.1",
     "vite": "^4.4.11",
+    "vitest": "^0.34.6",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
@@ -52,7 +53,6 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-config-standard-vue": "^1.0.0",
     "typescript": "~5.2.0",
-    "vitest": "^0.34.6",
     "vue-tsc": "^1.8.19"
   }
 }

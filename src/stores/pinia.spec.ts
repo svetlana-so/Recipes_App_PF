@@ -80,7 +80,7 @@ describe('RecipeBook Service', () => {
     it('logs in and sets user-related data in local storage', () => {
       const RecipeStore = useRecipeBook();
 
-      RecipeStore.user_name = 'testuser';
+      RecipeStore.userName = 'testuser';
       RecipeStore.handleSubmit();
 
       expect(setItemSpy).toHaveBeenCalledWith(USER_NAME_KEY, 'testuser');

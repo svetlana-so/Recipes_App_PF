@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 // useRecipeBook.ts
 import { defineStore } from 'pinia';
 import { ref, computed, watch } from 'vue';
@@ -26,7 +27,7 @@ const USER_NAME_KEY = 'user_name';
 const COMMENTS = 'comments';
 
 export const useRecipeBook = defineStore('RecipeBook', () => {
-  const user_name = ref<string>(localStorage.getItem(USER_NAME_KEY) || '');
+  const userName = ref<string>(localStorage.getItem(USER_NAME_KEY) || '');
   const recipes = ref<Recipe[]>([]);
   const searchquery = ref<string>('');
   const favoritesRecipes = ref<Recipe[]>([]);
@@ -63,22 +64,22 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
   });
 
   const handleSubmit = async () => {
-    if (!user_name.value.trim()) {
+    if (!userName.value.trim()) {
       return;
     }
     isLoggedIn.value = true;
-    localStorage.setItem(USER_NAME_KEY, user_name.value);
+    localStorage.setItem(USER_NAME_KEY, userName.value);
   };
   const logout = async () => {
     isLoggedIn.value = false;
     localStorage.removeItem(USER_NAME_KEY);
     localStorage.removeItem(COMMENTS);
     localStorage.removeItem(FAVORITES_KEY);
-    user_name.value = '';
+    userName.value = '';
     searchquery.value = '';
   };
 
-  //watch the favoritesRecipes array and update the localStorage
+  // watch the favoritesRecipes array and update the localStorage
   watch(
     () => favoritesRecipes.value,
     () => {
@@ -106,6 +107,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
       const data = await response.json();
       recipes.value = data.meals || [];
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     } finally {
       isLoading.value = false;
@@ -126,14 +128,14 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     }
   }
 
-  //comment for myself: this will work only when the state of the recipes is the same
+  // comment for myself: this will work only when the state of the recipes is the same
   function toggleFavoriteRecipes(id: number): void {
     const existingRecipeIndex = favoritesRecipes.value.findIndex(
       (recipe) => recipe.idMeal === id
     );
 
     if (existingRecipeIndex === -1) {
-      //if there is no recipe in favorites
+      // if there is no recipe in favorites
       const recipeToAdd = recipes.value?.find((recipe) => recipe.idMeal === id);
 
       if (recipeToAdd) {
@@ -153,7 +155,7 @@ export const useRecipeBook = defineStore('RecipeBook', () => {
     numberOfRecipes,
     filteredIngredients,
     isRecipeValid,
-    user_name,
+    userName,
     isLoggedIn,
     singleComment,
     comments,

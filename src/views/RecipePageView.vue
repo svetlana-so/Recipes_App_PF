@@ -39,12 +39,14 @@ const openSource = () => {
     </h2>
     <div class="sources flex flex-row justify-center sm:justify-end">
       <button
+        type="button"
         @click="openYoutube"
         class="focus:outline-none text-white bg-red-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
       >
         YouTube
       </button>
       <button
+        type="button"
         @click="openSource"
         class="focus:outline-none text-white bg-teal-500 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
       >

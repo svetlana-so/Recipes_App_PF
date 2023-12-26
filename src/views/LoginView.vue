@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useRecipeBook } from '../stores/recipies';
 import { useRouter } from 'vue-router';
+import { useRecipeBook } from '../stores/recipies';
 
 const router = useRouter();
 const RecipeStore = useRecipeBook();
-const { user_name, isLoggedIn } = storeToRefs(RecipeStore);
+const { userName, isLoggedIn } = storeToRefs(RecipeStore);
 
 const navigateToHomePage = () => {
   router.push(`/`);
@@ -35,7 +35,7 @@ const navigateToHomePage = () => {
               >
               <input
                 type="text"
-                v-model="user_name"
+                v-model="userName"
                 id="first_name"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Enter your name"
@@ -68,7 +68,7 @@ const navigateToHomePage = () => {
       <p>
         Name:
         <span data-testid="user-name-for-test" class="font-bold">{{
-          user_name
+          userName
         }}</span>
       </p>
       <button

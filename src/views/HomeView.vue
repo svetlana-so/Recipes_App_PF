@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useRecipeBook } from '../stores/recipies';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import SingleRecipeCard from '../components/SingleRecipeCard.vue';
-import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const RecipeStore = useRecipeBook();
 const { recipes, numberOfRecipes, isLoggedIn } = storeToRefs(RecipeStore);
 const showPopup = ref(true);
 
-const toLoginPage = (event: any) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const toLoginPage = (_event: any) => {
   router.push(`/login`);
+  // eslint-disable-next-line no-use-before-define
   hidePopup();
 };
 

@@ -45,7 +45,7 @@ describe('RecipeBook', () => {
 
     RecipeStore.recipes = [createSampleRecipe(123), createSampleRecipe(2)];
 
-    const isRecipeValid = RecipeStore.isRecipeValid;
+    const {isRecipeValid} = RecipeStore;
     const result = isRecipeValid(validRecipeId);
 
     expect(result).toBe(true);
@@ -57,7 +57,7 @@ describe('RecipeBook', () => {
 
     RecipeStore.recipes = [createSampleRecipe(123), createSampleRecipe(2)];
 
-    const isRecipeValid = RecipeStore.isRecipeValid;
+    const {isRecipeValid} = RecipeStore;
     const result = isRecipeValid(invalidRecipeId);
 
     expect(result).toBe(false);
@@ -103,7 +103,7 @@ describe('RecipeBook Service', () => {
 
       expect(removeItemSpy).toHaveBeenCalledWith(USER_NAME_KEY);
       expect(removeItemSpy).toHaveBeenCalledWith(COMMENTS);
-      //fix this
+      // fix this
       /* expect(removeItemSpy).toHaveBeenCalledWith(FAVORITES_KEY); */
       expect(RecipeStore.isLoggedIn).toBe(false);
     });

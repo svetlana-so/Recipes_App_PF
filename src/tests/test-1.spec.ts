@@ -40,7 +40,7 @@ test('test searching for the recipes, leave comments and add favorite recipes', 
   await page.getByRole('button', { name: 'Explore the recipes' }).click();
   await page.getByPlaceholder('Search you recipe').click();
   await page.getByPlaceholder('Search you recipe').fill('cake');
-  //can be different in the future if api changes
+  // can be different in the future if api changes
   await expect(page.getByText('Recipes found:')).toHaveText(
     'Recipes found: 19'
   );

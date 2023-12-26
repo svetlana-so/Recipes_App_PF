@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { watchEffect } from 'vue';
-import { useRecipeBook } from '../stores/recipies';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
+import { useRecipeBook } from '../stores/recipies';
+
 const RecipeStore = useRecipeBook();
 const { isLoggedIn } = storeToRefs(RecipeStore);
 
@@ -32,12 +33,14 @@ watchEffect(() => {
         active-class="active"
         to="/login"
         ><button
+        type="submit"
           class="h-10 px-5 m-2 text-sm text-white transition-colors duration-150 bg-yellow-600 rounded-lg focus:shadow-outline hover:bg-yellow-700"
         >
           Log In
         </button></RouterLink
       >
       <button
+      type="submit"
         @click="RecipeStore.logout"
         v-if="isLoggedIn"
         class="h-10 px-5 m-2 text-sm text-white transition-colors duration-150 bg-red-600 rounded-lg focus:shadow-outline hover:bg-red-700"

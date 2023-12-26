@@ -2,9 +2,10 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRecipeBook } from '../stores/recipies';
+
 const RecipeStore = useRecipeBook();
 
-const { user_name, isLoggedIn, comments, singleComment } =
+const { userName, isLoggedIn, comments, singleComment } =
   storeToRefs(RecipeStore);
 
 const { recipeId } = defineProps(['recipeId']);
@@ -15,7 +16,7 @@ const addComment = () => {
   }
 
   const newComment = {
-    recipeId: recipeId,
+    recipeId,
     recipeComment: singleComment.value,
   };
 
@@ -37,7 +38,7 @@ const filteredComments = computed(() => {
           v-if="isLoggedIn"
           class="text-lg lg:text-2xl font-bold text-gray-900 py-6"
         >
-          Share your comments, {{ user_name }}:
+          Share your comments, {{ userName }}:
         </h2>
         <h2
           v-if="!isLoggedIn"
@@ -84,7 +85,7 @@ const filteredComments = computed(() => {
               <p
                 class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold"
               >
-                {{ user_name }}
+                {{ userName }}
               </p>
               <p data-testid="comment" class="text-gray-700">
                 {{ comment.recipeComment }}

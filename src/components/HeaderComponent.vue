@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia';
 import { useRecipeBook } from '../stores/recipies';
 
 const RecipeStore = useRecipeBook();
-const { searchquery, user_name } = storeToRefs(RecipeStore);
+const { searchquery, userName } = storeToRefs(RecipeStore);
 
 watch(
   () => RecipeStore.searchquery,
@@ -26,7 +26,7 @@ watch(
       class="text-black text-xl font-semibold md:text-4xl px-8 py-2 text-right"
     >
       Hello,<br />
-      {{ user_name }}
+      {{ userName }}
     </h1>
     <h3 class="text-4xl md:text-6xl p-8">
       Elevate Your <br />Dining Experience

@@ -6,6 +6,7 @@ const RecipeStore = useRecipeBook();
 const { favoritesRecipes } = storeToRefs(RecipeStore);
 const { recipe } = defineProps(['recipe']);
 
+// eslint-disable-next-line no-shadow
 function isFavorite(recipe: any) {
   const favorites = favoritesRecipes.value || [];
   return favorites.some((favorite) => favorite.idMeal === recipe.idMeal);

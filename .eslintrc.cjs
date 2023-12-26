@@ -5,6 +5,7 @@ const path = require('node:path');
 module.exports = {
   root: true,
   extends: [
+    '@vue/airbnb',
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-airbnb',

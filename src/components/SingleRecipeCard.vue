@@ -19,7 +19,7 @@ const handleCardClick = (event: any) => {
 </script>
 
 <template>
-  <div class="card" @click="handleCardClick">
+  <div class="card" @click="handleCardClick" @keydown.enter="handleCardClick">
     <div class="image-box">
       <img :src="recipe.strMealThumb" :alt="recipe.strMeal" />
       <div class="favorite-button">

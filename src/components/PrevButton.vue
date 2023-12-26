@@ -1,5 +1,6 @@
 <template>
   <button
+  type="submit"
     @click="navigateBack"
     class="w-30 bg-slate-300 rounded-full p-4 m-4 md:w-40"
   >
